@@ -1,0 +1,33 @@
+-- 1148. Article Views I
+-- Write an SQL query to find all the authors that viewed at least one of their own articles, 
+-- sorted in ascending order by their id.
+
+-- Create table
+DROP TABLE VIEWS;
+CREATE TABLE VIEWS(
+ ARTICLE_ID INT,
+ AUTHOR_ID INT,
+ VIEWER_ID INT,
+ VIEW_DATE DATE
+);
+ 
+INSERT INTO VIEWS VALUES (1, 3, 5, '2019-08-01');
+INSERT INTO VIEWS VALUES (1, 3, 6, '2019-08-02');
+INSERT INTO VIEWS VALUES (2, 7, 7, '2019-08-01');
+INSERT INTO VIEWS VALUES (2, 7, 6, '2019-08-02');
+INSERT INTO VIEWS VALUES (4, 7, 1, '2019-07-22');
+INSERT INTO VIEWS VALUES (3, 4, 4, '2019-07-21');
+INSERT INTO VIEWS VALUES (3, 4, 4, '2019-07-21');
+COMMIT;
+
+-- Solution
+SELECT DISTINCT V.AUTHOR_ID ID
+FROM  VIEWS V
+WHERE V.AUTHOR_ID = V.VIEWER_ID
+GROUP BY V.AUTHOR_ID
+HAVING COUNT(V.AUTHOR_ID >= 2);
+
+
+
+
+
