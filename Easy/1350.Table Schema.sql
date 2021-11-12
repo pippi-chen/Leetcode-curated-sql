@@ -1,3 +1,8 @@
+-- 1350. Students With Invalid Departments 
+-- Write an SQL query to find the id and 
+-- the name of all students who are enrolled in departments that no longer exists.
+
+-- Create table
 DROP TABLE DEPARTMENTS;
 CREATE TABLE DEPARTMENTS(
  ID INT,
@@ -25,5 +30,12 @@ INSERT INTO STUDENTS VALUES (3, 'Steve' , 74);
 INSERT INTO STUDENTS VALUES (6, 'Luis', 1);
 INSERT INTO STUDENTS VALUES (8, 'Jonathan', 7);
 INSERT INTO STUDENTS VALUES (7, 'Daiana', 33);
-INSERT INTO STUDENTS VALUES (11, 'Madelynn' , 1);
+INSERT INTO STUDENTS VALUES (11, 'Madelynn', 1);
 COMMIT;
+
+-- Solution
+SELECT DISTINCT S.ID, S.NAME
+FROM DEPARTMENTS D, STUDENTS S
+WHERE S.DEPARTMENT_ID NOT IN (
+	SELECT D.ID
+    FROM DEPARTMENTS D);

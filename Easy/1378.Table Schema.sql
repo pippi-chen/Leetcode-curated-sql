@@ -1,3 +1,8 @@
+-- 1378. Replace Employee ID With The Unique Identifier 
+-- Write an SQL query to show the unique ID of each user. 
+-- If a user doesn’t have a unique ID replace just show null.
+
+-- Create table
 DROP TABLE EMPLOYEES;
 CREATE TABLE EMPLOYEES(
  ID INT,
@@ -22,3 +27,11 @@ INSERT INTO EMPLOYEEUNI VALUES (3, 1);
 INSERT INTO EMPLOYEEUNI VALUES (11, 2);
 INSERT INTO EMPLOYEEUNI VALUES (90, 3);  
 COMMIT;
+
+-- Solution
+SELECT EU.UNIQUE_ID, E.NAME
+FROM EMPLOYEES E
+LEFT JOIN EMPLOYEEUNI EU
+ON E.ID = EU.ID
+ORDER BY E.NAME;
+

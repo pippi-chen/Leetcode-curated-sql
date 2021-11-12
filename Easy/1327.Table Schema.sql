@@ -1,7 +1,6 @@
--- 1322. Ads Performance 
--- Write an SQL query to find the ctr of each Ad.
--- Round ctr to 2 decimal points. 
--- Order the result table by ctr in descending order and by ad_id in ascending order in case of a tie.
+-- 1327. List The Products Ordered In A Period
+-- Write an SQL query to get the names of products 
+-- with greater than or equal to 100 units ordered in February 2020 and their amount.
 
 -- Create table
 DROP TABLE PRODUCTS;
@@ -39,4 +38,10 @@ INSERT INTO ORDERS VALUES (5, '2020-03-01', 50);
 COMMIT;
 
 -- Solution
-
+SELECT P.PRODUCT_NAME, SUM(O.UNIT) AS 'UNIT'
+FROM PRODUCTS P, ORDERS O
+WHERE P.PRODUCT_ID = O.PRODUCT_ID
+    AND O.ORDER_DATE BETWEEN '2020-02-01' AND '2020-02-28'
+GROUP BY P.PRODUCT_NAME
+HAVING SUM(O.UNIT) >= 100
+ORDER BY SUM(O.UNIT) DESC;

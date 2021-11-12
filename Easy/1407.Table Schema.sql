@@ -1,3 +1,9 @@
+-- 1407. Top Travellers
+-- Write an SQL query to report the distance travelled by each user.
+-- Return the result table ordered by travelled_distance in descending order, 
+-- if two or more users travelled the same distance, order them by their name in ascending order.
+
+-- Create table
 DROP TABLE USERS;
 CREATE TABLE USERS(
  ID INT,
@@ -31,3 +37,7 @@ INSERT INTO RIDES VALUES (7, 7, 120);
 INSERT INTO RIDES VALUES (8, 19, 400);
 INSERT INTO RIDES VALUES (9, 7, 230);
 COMMIT;
+
+-- Solution
+
+
