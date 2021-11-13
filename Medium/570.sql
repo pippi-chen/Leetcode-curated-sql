@@ -1,3 +1,7 @@
+-- 550. Managers With At Least 5 Direct Reports
+-- Write a SQL query that finds out managers with at least 5 direct report.
+
+-- Create table
 DROP TABLE EMPLOYEE;
 CREATE TABLE EMPLOYEE(
  ID INT,
@@ -14,3 +18,17 @@ INSERT INTO EMPLOYEE VALUES (104, 'Amy', 'A', 101);
 INSERT INTO EMPLOYEE VALUES (105, 'Anne', 'A', 101);
 INSERT INTO EMPLOYEE VALUES (106, 'Ron', 'B', 101);
 COMMIT;
+
+-- Solution
+SELECT E1.NAME
+FROM EMPLOYEE E1
+WHERE E1.ID = (
+	SELECT E2.MANAGERID
+    FROM EMPLOYEE E1, EMPLOYEE E2
+    WHERE E1.ID = E2.MANAGERID
+    GROUP BY E2.MANAGERID
+    HAVING COUNT(E2.ID));
+    
+
+
+
