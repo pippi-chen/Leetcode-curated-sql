@@ -1,3 +1,8 @@
+-- 1495. Friendly Movies Streamed Last Month
+-- Write an SQL query to report the distinct titles of the kid-friendly movies streamed in June 2020.
+-- Return the result table in any order.
+
+-- Create table
 DROP TABLE TVPROGRAM;
 CREATE TABLE TVPROGRAM(
  PROGRAM_DATE DATE,
@@ -28,3 +33,11 @@ INSERT INTO CONTENT VALUES (3, 'Database Sols', 'N', 'Series');
 INSERT INTO CONTENT VALUES (4, 'Aladdin', 'Y', 'Movies');
 INSERT INTO CONTENT VALUES (5, 'Cinderella', 'Y', 'Movies');
 COMMIT;
+
+-- Solution
+SELECT C.TITLE
+FROM TVPROGRAM T, CONTENT C
+WHERE T.CONTENT_ID = C.CONTENT_ID
+	AND T.PROGRAM_DATE BETWEEN '2020-06-01' AND '2020-06-30'
+	AND C.KIDS_CONTENT = 'Y';
+    

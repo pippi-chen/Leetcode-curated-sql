@@ -1,0 +1,32 @@
+DROP TABLE ACTIONS;
+CREATE TABLE ACTIONS (
+ USER_ID INT,
+ POST_ID INT,
+ ACTION_DATE DATE,
+ -- MySQL
+ -- action enum('view', 'like', 'reaciton', 'comment', 'report', 'share'),
+ ACTION VARCHAR(10) CHECK( ACTION IN ('view', 'like', 'reaciton', 'comment', 'report', 'share') ),
+ EXTRA VARCHAR(10)
+);
+DROP TABLE REMOVALS;
+CREATE TABLE REMOVALS(
+ POST_ID INT,
+ REMOVE_DATE DATE,
+ PRIMARY KEY (POST_ID)
+);
+INSERT INTO ACTIONS VALUES (1, 1, '2019-07-01', 'view', null);
+INSERT INTO ACTIONS VALUES (1, 1, '2019-07-01', 'like', null);
+INSERT INTO ACTIONS VALUES (1, 1, '2019-07-01', 'share',  null);
+INSERT INTO ACTIONS VALUES (2, 2, '2019-07-04', 'view', null);
+INSERT INTO ACTIONS VALUES (2, 2, '2019-07-04', 'report', 'spam');
+INSERT INTO ACTIONS VALUES (3, 4, '2019-07-04', 'view', null);
+INSERT INTO ACTIONS VALUES (3, 4, '2019-07-04', 'report', 'spam');
+INSERT INTO ACTIONS VALUES (4, 3, '2019-07-02', 'view', null);
+INSERT INTO ACTIONS VALUES (4, 3, '2019-07-02', 'report', 'spam');
+INSERT INTO ACTIONS VALUES (5, 2, '2019-07-03', 'view', null);
+INSERT INTO ACTIONS VALUES (5, 2, '2019-07-03', 'report', 'racism');
+INSERT INTO ACTIONS VALUES (5, 5, '2019-07-03', 'view', null);
+INSERT INTO ACTIONS VALUES (5, 5, '2019-07-03', 'report', 'racism');
+INSERT INTO REMOVALS VALUES (2, '2019-07-20');
+INSERT INTO REMOVALS VALUES (3, '2019-07-18');
+COMMIT;
